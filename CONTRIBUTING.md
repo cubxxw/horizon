@@ -1,20 +1,32 @@
 #  Contributing to horizon
+
 So, you want to hack on horizon? Yay!
 
 First of all, thank you for considering contributing to our project! We appreciate your time and effort, and we value any contribution, whether it's reporting a bug, suggesting a new feature, or submitting a pull request.
 
 This document provides guidelines and best practices to help you contribute effectively.
 
-## Requirements
+## 📇Topics
 
-Please meet the minimum version of the Go language published in [go.mod](./go.mod).
+- [What we expect of you](#What-we-expect-of-you)
+- [Code of Conduct](#Code-of-Conduct)
+- [Getting Started](#Getting-Started)
+- [Style and Specification](#Style-and-Specification)
+- [Engage to help anything](#Engage-to-help-anything)
+- [Release version](#Release-version)
+- [Contact Us](#Contact-Us)
 
-You'd better use Linux OR WSL as the development environment, Linux with [Makefile](./Makefile) can help you quickly build and test horizon project.
+## What we expect of you
+
+We hope that anyone can join horizon , even if you are a student, writer, translator
+
+Please meet the minimum version of the Go language published in [go.mod](./go.mod). If you want to manage the Go language version, we provide tools to install [gvm](https://github.com/moovweb/gvm) in our [Makefile](./Makefile)
+
+You'd better use Linux as the development environment, Linux with [Makefile](./Makefile) can help you quickly build and test horizon project.
 
 If you are familiar with [Makefile](./Makefile) , you can easily see the clever design of the horizon Makefile. Storing the necessary tools such as golangci in the `/tools` directory can avoid some tool version issues.
 
 The [Makefile](./Makefile) is for every developer, even if you don't know how to use the Makefile tool, don't worry, we provide two great commands to get you up to speed with the Makefile architecture, `make help` and `make help-all`, it can reduce problems of the developing environment.
-
 
 ## Code of Conduct
 
@@ -33,42 +45,41 @@ Every action to make project horizon better is encouraged. On GitHub, every impr
 + If you find document incorrect, just do it and fix that!
 + ...
 
-
 #### Where should I start?
 
 + If you are new to the project, don't know how to contribute horizon, please check out the [good first issue](https://github.com/horizoncd/horizon/issues?q=is%3Aopen+label%3A"good+first+issue"+sort%3Aupdated-desc) label.
-+ You should be good at filtering the horizon issue tags and finding the ones you like, such as [RFC](https://github.com/horizoncd/horizon/issues?q=is%3Aissue+is%3Aopen+RFC+label%3ARFC) for big initiatives, features for [feature](https://github.com/horizoncd/horizon/issues?q=is%3Aissue+label%3Afeature) proposals, and [bug](https://github.com/{github/issues?q=is%3Aissue+label%3Abug+) fixes.
++ You should be good at filtering the horizon issue tags and finding the ones you like, such as [RFC](https://github.com/horizoncd/horizon/issues?q=is%3Aissue+is%3Aopen+RFC+label%3ARFC) for big initiatives, features for [feature](https://github.com/horizoncd/horizon/issues?q=is%3Aissue+label%3Afeature) proposals, and [bug](https://github.com/horizoncd/horizon/issues?q=is%3Aissue+label%3Abug+) fixes.
 + If you are looking for something to work on, check out our [open issues](https://github.com/horizoncd/horizon/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc).
 + If you have an idea for a new feature, please [open an issue](https://github.com/horizoncd/horizon/issues/new/choose), and we can discuss it.
 
-
 #### Design documents
 
-Any substantial design deserves a design document. Design documents are written with Google Docs OR Notion、Even mark RFC in [issues](https://github.com/horizoncd/horizon/issues?q=is%3Aissue+is%3Aopen+RFC+label%3ARFC), [discussions](https://github.com/horizon/discussions) and should be shared with the community by adding the doc to our [shared Drive](https://drive.google.com/) and sending a note to the appropriate working group to let people know the doc is there. 
+For any substantial design, there should be a well-crafted design document. This document is not just a simple record, but also a detailed description and manifestation, which can help team members better understand the design thinking and grasp the design direction. In the process of writing the design document, we can choose to use tools such as `Google Docs` or `Notion`, and even mark **RFC** in [issues](https://github.com/horizoncd/horizon/issues?q=is%3Aissue+is%3Aopen+RFC+label%3ARFC) or [discussions](https://github.com/horizoncd/horizon/discussions) for better collaboration. Of course, after completing the design document, we should also add it to our [Shared Drive](https://drive.google.com/drive/) and notify the appropriate working group to let everyone know of its existence. Only by doing so can we maximize the effectiveness of the design document and provide strong support for the smooth progress of the project.
 
 Anybody can access the shared Drive for reading. To get access to comment. Once you've done that, head to the [shared Drive](https://drive.google.com/) and behold all the docs.
 
-In addition to that, we'd love to invite you to [join our Slack](https://join.slack.com/t/horizoncd/shared_invite/zt-1sehbmzcx-dgIwaExNR4fZKXppj5kmgQ) where you can play with your imagination, tell us what you're working on, and get a quick response.
+In addition to that, we'd love to invite you to [Join Our Slack](https://join.slack.com/t/horizoncd/shared_invite/zt-1sehbmzcx-dgIwaExNR4fZKXppj5kmgQ) where you can play with your imagination, tell us what you're working on, and get a quick response.
 
 When documenting a new design, we recommend a 2-step approach:
 
-1. Use the short-form RFC template to outline your ideas and get early feedback.
-2. Once you have received sufficient feedback and consensus, you may use the longer-form design doc template to specify and discuss your design in more details.
+1. Use the short-form **RFC** template to outline your ideas and get early feedback.
+2. Once you have received sufficient feedback and consensus, you may use the **longer-form design doc template** to specify and discuss your design in more details.
 
-In order to contribute a feature to horizon you'll need to go through the following steps:
+**In order to contribute a feature to horizon you'll need to go through the following steps:**
 
 + Discuss your idea with the appropriate [working groups](https://join.slack.com/t/horizoncd/shared_invite/zt-1sehbmzcx-dgIwaExNR4fZKXppj5kmgQ) on the working group's Slack channel.
 + Once there is general agreement that the feature is useful, create a GitHub issue to track the discussion. The issue should include information about the requirements and use cases that it is trying to address.
 + Include a discussion of the proposed design and technical details of the implementation in the issue.
 
-But keep in mind that there is no guarantee of it being accepted and so it is usually best to get agreement on the idea/design before time is spent coding it. However, sometimes seeing the exact code change can help focus discussions, so the choice is up to you.
-
+But keep in mind that there is no guarantee of it being accepted and so it is usually best to get agreement on the **idea/design** before time is spent coding it. However, sometimes seeing the exact code change can help focus discussions, so the choice is up to you.
 
 ## Getting Started
-
+> **Note**
+>
+> A simple example allows you to quickly contribute your first **PR** to horizon.
 To propose PR for the horizon item, we assume you have registered a GitHub ID. Then you could finish the preparation in the following steps:
 
-1. Fork the repository(horizon)
+1. **Fork** the repository(horizon)
 
 2. **CLONE** your own repository to master locally. Use `git clone https://github.com/<your-username>/horizon.git` to clone repository to your local machine. Then you can create new branches to finish the change you wish to make.
 
@@ -79,7 +90,7 @@ To propose PR for the horizon item, we assume you have registered a GitHub ID. T
    ❯ git remote set-url --push upstream no-pushing
    ```
 
-   With this remote setting, you can check your git remote configuration like this:
+   With this remote setting, you can check your **git remote configuration** like this:
 
    ```go
    ❯ git remote -v
@@ -111,31 +122,25 @@ To propose PR for the horizon item, we assume you have registered a GitHub ID. T
 
    ```bash
    ❯ git rebase upstream/main
-   ❯ make link	  # golangci-lint run -c .golangci.yml
+   ❯ make lint	  # golangci-lint run -c .golangci.yml
    ❯ git add -A  # add changes to staging
    ❯ git commit -a -s -m "fix: message for your changes" # -s adds a Signed-off-by trailer
    ```
 
-6. **Push your branch** to your forked repository, it is recommended to have only one commit for a PR.
+6. **Push your branch** to your forked repository, it is recommended to have only one commit for a **PR**.
 
    ```bash
    # sync up with upstream
-   ❯ git fetch upstream main
+   ❯ git fetch upstream
    ❯ git rebase upstream/main
-   ❯ 
-   ❯ git rebase -i	<commit-id> # rebase with interactive mode to squash your commits into a single one
-   ❯ git push # push to the remote repository, if it's a first time push, run git push --set-upstream origin <new-branch># sync up with upstream
-   ❯ git fetch upstream main
-   git rebase upstream/main
-   
    ❯ git rebase -i	<commit-id> # rebase with interactive mode to squash your commits into a single one
    ❯ git push # push to the remote repository, if it's a first time push, run git push --set-upstream origin <new-branch>
    ```
-
+   
    You can also use `git commit -s --amend && git push -f` to update modifications on the previous commit.
-
+   
    If you have developed multiple features in the same branch, you should create PR separately by rebasing to the main branch between each push:
-
+   
    ```bash
    # create new branch, for example git checkout -b feature/infra
    ❯ git checkout -b <new branch>
@@ -150,7 +155,7 @@ To propose PR for the horizon item, we assume you have registered a GitHub ID. T
    ❯ git commit -m -s "feat: feature two"
    # then create pull request, and merge
    ```
-
+   
 7. **Open a pull request** to `horizoncd/horizon:main`
 
    It is recommended to review your changes before filing a pull request. Check if your code doesn't conflict with the main branch and no redundant code is included.
@@ -171,7 +176,7 @@ To be honest, we regard every user of horizonas a very kind contributor. After e
 
 Since we collaborate project horizon in a distributed way, we appreciate **WELL-WRITTEN**, **DETAILED**, **EXPLICIT** issue reports. To make the communication more efficient, we wish everyone could search if your issue is an existing one in the searching list. If you find it existing, please add your details in comments under the existing issue instead of opening a brand new one.
 
-To make the issue details as standard as possible, we setup an [ISSUE TEMPLATE](https://github.com/horizon/tree/main/.github/ISSUE_TEMPLATE) for issue reporters. You can find three kinds of issue templates there: question, bug report and feature request. Please **BE SURE** to follow the instructions to fill fields in template.
+To make the issue details as standard as possible, we setup an [ISSUE TEMPLATE](https://github.com/horizoncd/horizon/tree/main/.github/ISSUE_TEMPLATE) for issue reporters. You can find three kinds of issue templates there: question, bug report and feature request. Please **BE SURE** to follow the instructions to fill fields in template.
 
 **There are a lot of cases when you could open an issue:**
 
@@ -188,9 +193,13 @@ To make the issue details as standard as possible, we setup an [ISSUE TEMPLATE](
 
 Also, we must be reminded when submitting a new question about horizon, please remember to remove the sensitive data from your post. Sensitive data could be password, secret key, network locations, private business data and so on.
 
+> **Note**
+>
+> We have requirements for **Commits**, **PR**, **Docs**, and good standards help us collaborate better and understand what you're doing.
+
 #### Commit Rules
 
-Actually in Horizon, we take two rules serious when committing:
+Actually in horizon, we take two rules serious when committing:
 
 **🥇 Commit Message:**
 
@@ -219,58 +228,67 @@ Commit content represents all content changes included in one commit. We had bet
 
 In another word, contents in one single commit can pass the CI to avoid code mess. In brief, there are two minor rules for us to keep in mind:
 
-1. avoid very large change in a commit;
+1. avoid very large change in a commit.
 2. complete and reviewable for each commit.
+3. words are written in lowercase English, not uppercase English or other languages such as Chinese.
 
 No matter what the commit message, or commit content is, we do take more emphasis on code review.
 
 An example for this could be:
 
 ```bash
-❯ git commit -m "docs: add a new section to the README"
+❯ git commit -a -s -m "docs: add a new section to the readme file"
 ```
-
 
 #### PR Description
 
-PR is the only way to make change to horizon project files. To help reviewers better get your purpose, PR description could not be too detailed. We encourage contributors to follow the [PR template](https://github.com/horizon/tree/main/.github/PULL_REQUEST_TEMPLATE.md) to finish the pull request.
+PR is the only way to make change to horizon project files. To help reviewers better get your purpose, **PR** description could not be too detailed. We encourage contributors to follow the [PR template](https://github.com/horizoncd/horizon/tree/main/.github/PULL_REQUEST_TEMPLATE.md) to finish the pull request.
 
 You can find some very formal PR in [RFC](https://github.com/horizoncd/horizon/issues?q=is%3Aissue+is%3Aopen+RFC+label%3ARFC) issues and learn about them.
 
-**Opening PRs:**
+**📖 Opening PRs:**
 
-+ As long as you are working on your PR, please mark it as a draft
-+ Please make sure that your PR is up-to-date with the latest changes in `main`
-+ Mention the issue that your PR is addressing (Fix: #{ID_1}, #{ID_2})
-+ Make sure that your PR passes all checks
++ As long as you are working on your **PR**, please mark it as a draft.
++ Please make sure that your **PR** is up-to-date with the latest changes in `main`
++ Mention the issue that your **PR** is addressing.  For example, `Fixes: #{ID_1}, #{ID_2}`
++ Make sure that your **PR** passes all checks.
 
+**🈴 Reviewing PRs:**
 
-**Reviewing PRs:**
-
-+ Be respectful and constructive 
-+ Assign yourself to the PR 
-+ Check if all checks are passing
-+ Suggest changes instead of simply commenting on found issues
-+ If you are unsure about something, ask the author
-+ If you are not sure if the changes work, try them out
-+ Reach out to other reviewers if you are unsure about something
-+ If you are happy with the changes, approve the PR
-+ Merge the PR once it has all approvals and the checks are passing
-
++ Be respectful and constructive. 
++ Assign yourself to the **PR**.
++ Check if all checks are passing.
++ Suggest changes instead of simply commenting on found issues.
++ If you are unsure about something, ask the author.
++ If you are not sure if the changes work, try them out.
++ Reach out to other reviewers if you are unsure about something.
++ If you are happy with the changes, approve the **PR**.
++ Merge the **PR** once it has all approvals and the checks are passing.
 
 **⚠️ DCO check:**
 
-We have a DCO check that runs on every pull request to ensure code quality and maintainability. This check verifies that the commit has been signed off, indicating that you have read and agreed to the provisions of the Developer Certificate of Origin. If you have not yet signed off on the commit, you can use the following command to sign off on the last commit you made:
+We have a [DCO check](https://github.com/apps/dco) which runs on every **PR** to verify that the commit has been signed off.
+
+Once [installed](https://github.com/apps/dco#usage), this integration will set the [status](https://developer.github.com/v3/repos/statuses/) to `failed` if commits in a **Pull Request** do not contain a valid `Signed-off-by` line.
+
+To sign off the last commit you made, you can use:
 
 ```bash
 ❯ git commit --amend --signoff
 ```
 
-Please note that signing off on a commit is a commitment that you have read and agreed to the provisions of the Developer Certificate of Origin. If you have not yet read this document, we strongly recommend that you take some time to read it carefully. If you have any questions about the content of this document, or if you need further assistance, please contact an administrator or relevant personnel.
+Contributors *sign-off*  that they adhere to these requirements by adding a `Signed-off-by` line to commit messages.
+
+Git even has a `-s` command line option to append this automatically to your commit message:
+
+```bash
+❯ git commit -s -m "docs: this is my commit message"
+```
 
 You can also automate signing off your commits by adding the following to your `.zshrc` or `.bashrc`:
 
-```go
+```bash
+❯ cat ~/.bashrc || cat ~/.zshrc
 git() {
   if [ $# -gt 0 ] && [[ "$1" == "commit" ]] ; then
      shift
@@ -281,6 +299,7 @@ git() {
 }
 ```
 
+
 #### CI actions
 
 We host CI on [GitHub Actions](https://github.com/horizoncd/horizon/actions), we will make sure PR pass tests before we can merge it.
@@ -289,54 +308,71 @@ These two kind of tests: `lint` and `unit test`
 
 `lint` tests if your code matches our code conventions, please consult [golangci-lint](https://golangci-lint.run/) and [lint config](https://github.com/horizoncd/horizon/blob/main/.golangci.yml)
 
-`unit test` runs all the test in code, and the code coverage should not less than 70 percent.
+> **Note**
+>
+> You can use the [Makefile](./Makefile)  to run Lint with the command `make lint`.
+
+
+`unit test` runs all the test in code, and the code coverage should not less than 60 percent, record us in [codeclimate](https://codeclimate.com/github/horizoncd/horizon) horizon the unit test coverage data.
+
+
+> **Note**
+>
+> We use the [Makefile](./Makefile) utility, `make tese` to run the unit tests, and the `make cover` utility to check the unit test coverage.
 
 Try your best to keep every function has been tested, it keeps the function behaves as intended.
 
-
 #### Docs Contribution
 
-The documentation for horizon includes:
+**The documentation for horizon includes:**
 
-+ README.md
-+ CONTRIBUTING.md
-+ DEVELOPGUIDE.md
-+ Official Documentation
++ [README.md](https://github.com/horizoncd/horizon/blob/main/README.md): This file includes the basic information and instructions for getting started with horizon.
++ [CONTRIBUTING.md](https://github.com/horizoncd/horizon/blob/main/CONTRIBUTING.md): This file contains guidelines for contributing to horizon's codebase, such as how to submit issues, pull requests, and code reviews.
++ [DEVELOPGUIDE.md](https://github.com/horizoncd/horizon/blob/main/DEVELOPGUIDE.md): This file provides a more in-depth guide to developing horizon, including information on the project's architecture, coding conventions, and testing practices.
++ [Official Documentation](https://horizoncd.github.io): This is the official documentation for horizon, which includes comprehensive information on all of its features, configuration options, and troubleshooting tips.
 
-Please obey the following rules to better format the docs, which would greatly improve the reading experience.
+**Please obey the following rules to better format the docs, which would greatly improve the reading experience.**
 
 1. Please do not use Chinese punctuations in English docs, and vice versa.
 2. Please use upper case letters where applicable, like the first letter of sentences / headings, etc.
 3. Please specify a language for each Markdown code blocks, unless there's no associated languages.
 4. Please insert a whitespace between Chinese and English words.
-5. Please use the correct case for technical terms, such as using HTTP instead of http, MySQL rather than mysql, Kubernetes instead of kubernetes, etc.
+5. Please use the correct case for technical terms, such as using `HTTP` instead of http, `MySQL` rather than mysql, `Kubernetes` instead of kubernetes, etc.
 6. Please check if there's any typos in the docs before submitting PRs.
+
+
+
+**Markfile Lint**
+
+We integrated in the CICD actions [markdownlint](https://github.com/markdownlint/markdownlint), it detects Markfile specification. 
+
+> **Note** </b>
+> We recommend reading [markdownlint rules](https://github.com/markdownlint/markdownlint/blob/main/docs/RULES.md), This document contains  a description of all rules, what they are checking for,  as well as an examples of documents that break the rule and corrected versions of the examples.
 
 
 ## Engage to help anything
 
-We choose GitHub as the primary place for horizon to collaborate. So the latest updates of horizon are always here. Although contributions via PR is an explicit way to help, we still call for any other ways.
+We choose GitHub as the primary place for horizon to collaborate. So the latest updates of horizon are always here. Although contributions via **PR** is an explicit way to help, we still call for any other ways.
 
 + reply to other's [issues](https://github.com/horizoncd/horizon/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) if you could;
 + help solve other user's problems;
-+ help review other's [PR](https://github.com/horizon/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc) design; 
++ help review other's [PR](https://github.com/horizoncd/horizon/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc) design; 
 + discuss about horizon to make things clearer;
 + advocate [horizon](google.com/search?q=horizon) technology beyond GitHub;
 + write blogs on horizon and so on.
 
 In a word, **ANY HELP IS CONTRIBUTION.**
 
-
-## Releasing
+## Release version
 
 Releases of horizon are done using [Release Please](https://github.com/googleapis/release-please) and [GoReleaser](https://goreleaser.com/). The workflow looks like this:
 
-🎯 A PR is merged to the `main` branch:
+🎯 **A PR is merged to the `main` branch:**
 
 + Release please is triggered, creates or updates a new release PR
 + This is done with every merge to main, the current release PR is updated every time
 
-🎯 Merging the 'release please' PR to `main`:
+🎯 **Merging the 'release please' PR to `main`:**
 
 + Release please is triggered, creates a new release and updates the changelog based on the commit messages
 + GoReleaser is triggered, builds the binaries and attaches them to the release
@@ -344,7 +380,7 @@ Releases of horizon are done using [Release Please](https://github.com/googleapi
 
 With the next relevant merge, a new release PR will be created and the process starts again
 
-**Manually setting the version:**
+👀 **Manually setting the version:**
 
 If you want to manually set the version, you can create a PR with an empty commit message that contains the version number in the commit message. For example:
 
@@ -353,3 +389,22 @@ Such a commit can get produced as follows:
 ````bash
 ❯ git commit --allow-empty -m "chore: release 0.0.3" -m "Release-As: 0.0.3
 ````
+
+
+## Contact Us
+
+We value close connections with our users, developers, and contributors here at horizon. With a large community and maintainer team, we're always here to help and support you. Whether you're looking to join our community or have any questions or suggestions, we welcome you to get in touch with us.
+
+Our most recommended way to get in touch is through [Slack](https://join.slack.com/t/horizoncd/shared_invite/zt-1sehbmzcx-dgIwaExNR4fZKXppj5kmgQ). Even if you're in China, Slack is usually not blocked by firewalls, making it an easy way to connect with us. Our Slack community is the ideal place to discuss and share ideas and suggestions with other users and developers of horizon. You can ask technical questions, seek help, or share your experiences with other users of horizon.
+
+In addition to Slack, we also offer the following ways to get in touch:
+
++ <a href="https://join.slack.com/t/horizoncd/shared_invite/zt-1sehbmzcx-dgIwaExNR4fZKXppj5kmgQ" target="_blank"><img src="https://img.shields.io/badge/Slack-horizon%2B-blueviolet?logo=slack&amp;logoColor=white"></a>:  We also have Slack channels for you to communicate and discuss. To join, visit https://slack.com/ and join our [👀 horizon slack](https://join.slack.com/t/horizoncd/shared_invite/zt-1sehbmzcx-dgIwaExNR4fZKXppj5kmgQ) team channel.
+
++ <a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&to=4closetool3@gmail.com" target="_blank"><img src="https://img.shields.io/badge/gmail-%40horizon-blue?style=social&horizon=gmail"></a>: Get in touch with us on [Gmail]([4closetool3@gmail.com](mailto:4closetool3@gmail.com)). If you have any questions or issues that need resolving, or any suggestions and feedback for our open source projects, please feel free to contact us via email.
+
++ <a href="https://horizoncd.github.io/" target="_blank"><img src="https://img.shields.io/badge/%E5%8D%9A%E5%AE%A2-%40horizon-blue?style=social&horizon=Octopus%20Deploy"></a>: Read our [horizon](https://horizoncd.github.io/docs). Our horizon is a great place to stay up-to-date with horizon projects and trends. On the horizon, we share our latest developments, tech trends, and other interesting information.
+
++ <a href="https://github.com/horizoncd/horizon/blob/main/image/readme/wechat.jpg" target="_blank"><img src="https://img.shields.io/badge/%E5%BE%AE%E4%BF%A1-horizon-brightgreen?horizon=wechat&style=flat-square"></a>: Add [Wechat](https://github.com/horizoncd/horizon/blob/main/image/readme/wechat.jpg) and indicate that you are a user or developer of horizon. We will process your request as soon as possible.
+
+Whether you're looking to join our community or have any questions or suggestions, we welcome you to get in touch with us.
