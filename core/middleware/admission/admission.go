@@ -8,6 +8,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
+
 	"github.com/horizoncd/horizon/core/common"
 	"github.com/horizoncd/horizon/core/middleware"
 	admissionwebhook "github.com/horizoncd/horizon/pkg/admission"
@@ -42,8 +43,6 @@ func Middleware(skippers ...middleware.Skipper) gin.HandlerFunc {
 				rpcerror.ParamError.WithErrMsg(fmt.Sprintf("request body is invalid, err: %v", err)))
 			return
 		}
-		// restore the request body
-		c.Request.Body = ioutil.NopCloser(bytes.NewBuffer(bodyBytes))
 		if len(bodyBytes) > 0 {
 			contentType := c.ContentType()
 			if contentType == binding.MIMEJSON || contentType == "" {
@@ -63,7 +62,11 @@ func Middleware(skippers ...middleware.Skipper) gin.HandlerFunc {
 		queries := c.Request.URL.Query()
 		options := make(map[string]interface{}, len(queries))
 		for k, v := range queries {
-			options[k] = v
+			if len(v) == 1 {
+				options[k] = v[0]
+			} else {
+				options[k] = v
+			}
 		}
 		admissionRequest := &admissionwebhook.Request{
 			Operation:   admissionmodels.Operation(attr.GetVerb()),
@@ -74,11 +77,27 @@ func Middleware(skippers ...middleware.Skipper) gin.HandlerFunc {
 			Object:      object,
 			Options:     options,
 		}
+		admissionRequest, err = admissionwebhook.Mutating(c, admissionRequest)
+		if err != nil {
+			response.AbortWithRPCError(c,
+				rpcerror.ParamError.WithErrMsg(fmt.Sprintf("admission mutating failed: %v", err)))
+			return
+		}
 		if err := admissionwebhook.Validating(c, admissionRequest); err != nil {
 			response.AbortWithRPCError(c,
 				rpcerror.ParamError.WithErrMsg(fmt.Sprintf("admission validating failed: %v", err)))
 			return
 		}
+		if admissionRequest.Object != nil {
+			bodyBytes, err = json.Marshal(admissionRequest.Object)
+			if err != nil {
+				response.AbortWithRPCError(c,
+					rpcerror.ParamError.WithErrMsg(fmt.Sprintf("marshal request body failed, err: %v", err)))
+				return
+			}
+		}
+		// restore the request body
+		c.Request.Body = ioutil.NopCloser(bytes.NewBuffer(bodyBytes))
 		c.Next()
 	}, skippers...)
 }
